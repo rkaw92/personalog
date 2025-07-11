@@ -1,0 +1,139 @@
+:root {
+    --font-primary: 'Montserrat';
+}
+
+/* themes */
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-primary: black;
+        --color-secondary: cornflowerblue;
+        --color-control: lightskyblue;
+        --color-border: lightskyblue;
+        --color-bg: white;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: white;
+        --color-secondary: deepskyblue;
+        --color-control: steelblue;
+        --color-border: deepskyblue;
+        --color-bg: black;
+    }
+}
+
+html {
+    font-size: 14pt;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+}
+
+main {
+    min-width: 240px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+}
+
+a[href] {
+    text-decoration: none;
+}
+
+h1, h2 {
+    font-weight: 500;
+}
+
+button, .button {
+    background-color: var(--color-control);
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    border: 1px solid var(--color-control);
+    border-radius: 8px;
+    padding: 0.5em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.action {
+    font-weight: 500 !important;
+}
+
+.item {
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, var(--color-border), transparent) 1;
+    box-sizing: border-box;
+    color: var(--color-primary);
+    display: block;
+    height: 100%;
+    width: 100%;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1em;
+    text-align: left;
+    font-weight: 300;
+}
+
+.small.item {
+    font-size: 1rem;
+}
+
+/* interactive elements get visual indications */
+a.item, button.item {
+    color: var(--color-secondary);
+    background-color: var(--color-bg);
+}
+
+/* forms */
+
+form section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 0.5em;
+}
+form .inputsection > div {
+    display: flex;
+    flex-direction: column;
+}
+form .inputsection > div.inputs {
+    flex: 1;
+}
+input, label {
+    height: 2em;
+    box-sizing: border-box;
+}
+form input {
+    border: none;
+    border-bottom: 2px dotted var(--color-primary);
+}
+
+dialog fieldset {
+    border: none;
+    padding: 0;
+}
+
+dialog fieldset.actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 0.5em;
+}
+dialog fieldset.actions button {
+    color: var(--color-primary);
+    background-color: var(--color-control);
+    flex-grow: 1;
+}

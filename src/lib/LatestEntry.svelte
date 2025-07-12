@@ -40,6 +40,6 @@
             ({ DateTime.fromJSDate($lastEntry.timestamp).toRelative() })
         </p>
         {:else}
-        <p>(no entry)</p>
+        <p>(no entries)</p>
         {/if}
 </section>

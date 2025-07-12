@@ -37,7 +37,9 @@
 <style>
     .add {
         display: list-item;
-        list-style-type: '+';
+    }
+    .add::before {
+        content: "+";
     }
 </style>
 

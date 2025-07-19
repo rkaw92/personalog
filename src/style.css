@@ -121,6 +121,18 @@ form input {
     border-bottom: 2px dotted var(--color-primary);
 }
 
+dialog {
+    position: fixed;
+    top: 1rem;
+    left: revert-layer;
+    margin-top: 0;
+}
+
+dialog::backdrop {
+    background-color: black;
+    opacity: 50%;
+}
+
 dialog fieldset {
     border: none;
     padding: 0;

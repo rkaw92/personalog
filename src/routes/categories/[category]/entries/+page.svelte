@@ -12,12 +12,20 @@
 </script>
 
 <style>
+    .top {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .top h1 {
+        flex: 4;
+    }
     .back {
         text-align: center;
         color: var(--color-primary);
         display: block;
-        width: 100%;
         margin-top: 1em;
+        flex: 1;
     }
     .back::before {
         content: '← ';
@@ -26,10 +34,13 @@
 
 <main>
     {#if $category}
-        <h1>{$category.name}</h1>
+        <span class="top">
+            <h1>{$category.name}</h1>
+            <a class="back button" href="/">Go back</a>
+        </span>
         <LatestEntry category={$category} />
-        <a class="back button" href="/">Go back</a>
-        <History category={$category} />
         <CreateEntry category={$category} />
+        <History category={$category} />
+        
     {/if}
 </main>

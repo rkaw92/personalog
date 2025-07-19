@@ -24,6 +24,7 @@
         display: block;
         width: 80%;
         margin: 0 auto;
+        margin-bottom: 1em;
         box-sizing: border-box;
         padding: 0.5em;
         border: 1px dashed var(--color-secondary);

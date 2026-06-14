@@ -29,6 +29,8 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid var(--color-border);
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
     }
 
     li a.item {

@@ -18,7 +18,7 @@
         flex-direction: row;
         align-items: center;
         gap: 1rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.75rem;
     }
     .top h1 {
         flex: 1;

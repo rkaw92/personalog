@@ -1,5 +1,6 @@
 <script lang="ts">
     import { db } from '../db';
+    import { t } from '$lib/i18n';
 
     let newCategoryName = $state('');
 
@@ -18,14 +19,14 @@
     async function submitCreateForm() {
         try {
             if (!newCategoryName) {
-                throw new Error('Category name cannot be empty');
+                throw new Error(t('category-name-empty'));
             }
             const id = await createCategory(newCategoryName);
             console.log('Added new category %s', id);
             newCategoryName = '';
             
         } catch (err: unknown) {
-            window.alert(`Failed to create category: ${err}`);
+            window.alert(t('create-category-failed', { error: String(err) }));
         }
     }
 
@@ -44,23 +45,23 @@
     }
 </style>
 
-<button class="item action add" onclick={openCreateDialog}>New category</button>
+<button class="item action add" onclick={openCreateDialog}>{t('new-category')}</button>
 
 <dialog bind:this={creationDialog}>
     <form method="dialog" onsubmit={submitCreateForm}>
-        <h2>Create a new category:</h2>
+        <h2>{t('create-category-heading')}</h2>
         <section class="inputsection">
             <div class="labels">
-                <label for="name">Name:</label>
+                <label for="name">{t('category-name-label')}</label>
             </div>
             <div class="inputs">
                 <input id="name" type="text" bind:value={newCategoryName}>
             </div>
         </section>
-        
+
         <fieldset class="actions">
-            <button class="action" type="submit">Create</button>
-            <button onclick={closeCreateDialog}>Cancel</button>
+            <button class="action" type="submit">{t('create')}</button>
+            <button onclick={closeCreateDialog}>{t('cancel')}</button>
         </fieldset>
     </form>
 </dialog>

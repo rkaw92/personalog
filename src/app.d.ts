@@ -10,4 +10,9 @@ declare global {
 	}
 }
 
+declare module '*.ftl?raw' {
+	const content: string;
+	export default content;
+}
+
 export {};

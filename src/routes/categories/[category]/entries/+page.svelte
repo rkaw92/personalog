@@ -5,6 +5,7 @@
     import { liveQuery } from "dexie";
     import { db } from "../../../../db";
     import LatestEntry from '$lib/LatestEntry.svelte';
+    import { t } from '$lib/i18n';
 
     const { category: categoryId } = page.params;
 
@@ -36,7 +37,7 @@
     {#if $category}
         <span class="top">
             <h1>{$category.name}</h1>
-            <a class="back button" href="/">Go back</a>
+            <a class="back button" href="/">{t('go-back')}</a>
         </span>
         <LatestEntry category={$category} />
         <CreateEntry category={$category} />

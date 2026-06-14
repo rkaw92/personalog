@@ -2,6 +2,7 @@
     import { liveQuery } from 'dexie';
     import { db, type Category } from '../db';
     import { DateTime, type DateTimeFormatOptions } from 'luxon';
+    import { t } from '$lib/i18n';
 
     interface Props {
         category: Category;
@@ -34,13 +35,13 @@
 </style>
 
 <section class="latest">
-    <h2>Latest entry</h2>
+    <h2>{t('latest-entry-heading')}</h2>
         {#if $lastEntry}
         <p>
             { DateTime.fromJSDate($lastEntry.timestamp).toLocaleString(formatOpts) }<br />
             ({ DateTime.fromJSDate($lastEntry.timestamp).toRelative() })
         </p>
         {:else}
-        <p>(no entries)</p>
+        <p>{t('no-entries')}</p>
         {/if}
 </section>

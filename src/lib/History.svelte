@@ -2,6 +2,7 @@
     import { liveQuery } from 'dexie';
     import { db, type Category } from '../db';
     import { DateTime, type DateTimeFormatOptions } from 'luxon';
+    import { t } from '$lib/i18n';
 
     interface Props {
         category: Category;
@@ -30,7 +31,7 @@
 </style>
 
 <section class="history">
-    <h2>In order of recency:</h2>
+    <h2>{t('history-heading')}</h2>
     <ol>
         {#if $historyEntries}
             {#each $historyEntries.toReversed() as entry}

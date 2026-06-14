@@ -66,56 +66,53 @@
     }
 </script>
 
-<button onclick={openEntryDialog}>{t('add-entry')}</button>
-
-<dialog bind:this={entryDialog}>
-    <form method="dialog" onsubmit={submitEntryForm}>
-        <h2>{t('add-entry-heading')}</h2>
-        <p>{t('in-category')} <strong>{category.name}</strong></p>
-        <section class="inputsection">
-            <div class="labels">
-                <label for="comment">{t('comment-label')}</label>
-            </div>
-            <div class="inputs">
-                <input id="comment" type="text" bind:value={newComment} placeholder={t('comment-placeholder')}>
-            </div>
-        </section>
-        <div class="timepicker">
-            <button type="button" class="timebtn" onclick={stepBack} disabled={timeOffsetIndex >= TIME_STEPS.length - 1}>&larr;</button>
-            <span class="timelabel">{timeLabel}</span>
-            <button type="button" class="timebtn" onclick={stepForward} disabled={timeOffsetIndex === 0}>&rarr;</button>
-        </div>
-        <fieldset class="actions">
-            <button type="submit">{t('add-to-log')}</button>
-            <button onclick={closeEntryDialog}>{t('cancel')}</button>
-        </fieldset>
-
-    </form>
-</dialog>
-
 <style>
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3125rem;
+        margin-bottom: 1rem;
+    }
+
     .timepicker {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 0.5em;
-        margin: 0.75em 0;
-    }
-
-    .timebtn {
-        width: 2.5em;
-        flex-shrink: 0;
-        font-size: 1.25rem;
-        padding: 0.2em;
-    }
-
-    .timebtn:disabled {
-        opacity: 0.3;
+        gap: 0.75rem;
+        margin: 0.75rem 0;
+        padding: 0.5rem 0.75rem;
+        background-color: var(--color-bg-subtle);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
     }
 
     .timelabel {
         flex: 1;
         text-align: center;
+        font-size: 0.9375rem;
+        font-weight: 500;
         font-variant-numeric: tabular-nums;
     }
 </style>
+
+<button class="btn-primary btn-trigger" onclick={openEntryDialog}>{t('add-entry')}</button>
+
+<dialog bind:this={entryDialog}>
+    <form method="dialog" onsubmit={submitEntryForm}>
+        <h2>{t('add-entry-heading')}</h2>
+        <p>{t('in-category')} <strong>{category.name}</strong></p>
+        <div class="field">
+            <label for="comment">{t('comment-label')}</label>
+            <input id="comment" type="text" bind:value={newComment} placeholder={t('comment-placeholder')}>
+        </div>
+        <div class="timepicker">
+            <button type="button" class="btn-icon" onclick={stepBack} disabled={timeOffsetIndex >= TIME_STEPS.length - 1}>&larr;</button>
+            <span class="timelabel">{timeLabel}</span>
+            <button type="button" class="btn-icon" onclick={stepForward} disabled={timeOffsetIndex === 0}>&rarr;</button>
+        </div>
+        <fieldset class="actions">
+            <button class="btn-primary" type="submit">{t('add-to-log')}</button>
+            <button class="btn-secondary" onclick={closeEntryDialog}>{t('cancel')}</button>
+        </fieldset>
+    </form>
+</dialog>

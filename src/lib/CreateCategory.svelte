@@ -24,7 +24,7 @@
             const id = await createCategory(newCategoryName);
             console.log('Added new category %s', id);
             newCategoryName = '';
-            
+
         } catch (err: unknown) {
             window.alert(t('create-category-failed', { error: String(err) }));
         }
@@ -36,32 +36,26 @@
 </script>
 
 <style>
-    .add {
-        display: list-item;
-        list-style-type: none;
-    }
-    .add::before {
-        content: "+";
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3125rem;
+        margin-bottom: 1rem;
     }
 </style>
 
-<button class="item action add" onclick={openCreateDialog}>{t('new-category')}</button>
+<button class="btn-primary btn-trigger" onclick={openCreateDialog}>+ {t('new-category')}</button>
 
 <dialog bind:this={creationDialog}>
     <form method="dialog" onsubmit={submitCreateForm}>
         <h2>{t('create-category-heading')}</h2>
-        <section class="inputsection">
-            <div class="labels">
-                <label for="name">{t('category-name-label')}</label>
-            </div>
-            <div class="inputs">
-                <input id="name" type="text" bind:value={newCategoryName}>
-            </div>
-        </section>
-
+        <div class="field">
+            <label for="name">{t('category-name-label')}</label>
+            <input id="name" type="text" bind:value={newCategoryName} autocomplete="off">
+        </div>
         <fieldset class="actions">
-            <button class="action" type="submit">{t('create')}</button>
-            <button onclick={closeCreateDialog}>{t('cancel')}</button>
+            <button class="btn-primary" type="submit">{t('create')}</button>
+            <button class="btn-secondary" onclick={closeCreateDialog}>{t('cancel')}</button>
         </fieldset>
     </form>
 </dialog>

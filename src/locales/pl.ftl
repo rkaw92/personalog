@@ -16,6 +16,12 @@ go-back = Wstecz
 latest-entry-heading = Ostatni wpis
 no-entries = (brak wpisów)
 
+# Categories.svelte
+archive-category-confirm = Zarchiwizować tę kategorię?
+unarchive-category-confirm = Przywrócić tę kategorię?
+show-archived = Pokaż zarchiwizowane
+hide-archived = Ukryj zarchiwizowane
+
 # History.svelte
 history-heading = Od najnowszych:
 remove-entry-confirm = Usunąć ten wpis?

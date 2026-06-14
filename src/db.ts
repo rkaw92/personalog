@@ -11,6 +11,7 @@ interface Entry {
 export interface Category {
   id: number;
   name: string;
+  archived?: boolean;
 }
 
 // NOTE: The cache is disabled because otherwise, a unique constraint violation

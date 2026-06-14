@@ -16,6 +16,12 @@ go-back = Go back
 latest-entry-heading = Latest entry
 no-entries = (no entries)
 
+# Categories.svelte
+archive-category-confirm = Archive this category?
+unarchive-category-confirm = Unarchive this category?
+show-archived = Show archived
+hide-archived = Hide archived
+
 # History.svelte
 history-heading = In order of recency:
 remove-entry-confirm = Remove this entry?

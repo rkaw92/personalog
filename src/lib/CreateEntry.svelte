@@ -8,10 +8,27 @@
     const { category }: Props = $props();
 
     let newComment = $state('');
+    let timeOffsetIndex = $state(0);
+
+    // Steps in minutes: from "now" to progressively further back
+    const TIME_STEPS = [0, 5, 10, 15, 30, 60, 90, 120, 180, 240, 360, 480, 720, 1440];
+
+    function formatOffset(minutes: number): string {
+        // TODO: Translations (consider Fluent from Mozilla)
+        if (minutes === 0) return 'now';
+        if (minutes < 60) return `${minutes} min ago`;
+        const h = Math.floor(minutes / 60);
+        const m = minutes % 60;
+        const hLabel = `${h} h`;
+        return m === 0 ? `${hLabel} ago` : `${hLabel} ${m} min ago`;
+    }
+
+    let timeLabel = $derived(formatOffset(TIME_STEPS[timeOffsetIndex]));
 
     let entryDialog: HTMLDialogElement;
 
     function openEntryDialog() {
+        timeOffsetIndex = 0;
         entryDialog!.showModal();
     }
 
@@ -19,14 +36,25 @@
         entryDialog!.close();
         event.preventDefault();
         newComment = '';
+        timeOffsetIndex = 0;
+    }
+
+    function stepBack() {
+        if (timeOffsetIndex < TIME_STEPS.length - 1) timeOffsetIndex++;
+    }
+
+    function stepForward() {
+        if (timeOffsetIndex > 0) timeOffsetIndex--;
     }
 
     async function submitEntryForm() {
         try {
-            const id = await addEntry(category.id, new Date(), newComment);
+            const timestamp = new Date(Date.now() - TIME_STEPS[timeOffsetIndex] * 60 * 1000);
+            const id = await addEntry(category.id, timestamp, newComment);
             console.log('Added new entry %s', id);
             newComment = '';
-            
+            timeOffsetIndex = 0;
+
         } catch (err: unknown) {
             window.alert(`Failed to add entry: ${err}`);
         }
@@ -51,10 +79,42 @@
                 <input id="comment" type="text" bind:value={newComment} placeholder="(optional)">
             </div>
         </section>
+        <div class="timepicker">
+            <button type="button" class="timebtn" onclick={stepBack} disabled={timeOffsetIndex >= TIME_STEPS.length - 1}>&larr;</button>
+            <span class="timelabel">{timeLabel}</span>
+            <button type="button" class="timebtn" onclick={stepForward} disabled={timeOffsetIndex === 0}>&rarr;</button>
+        </div>
         <fieldset class="actions">
             <button type="submit">Add to log</button>
             <button onclick={closeEntryDialog}>Cancel</button>
         </fieldset>
-        
+
     </form>
 </dialog>
+
+<style>
+    .timepicker {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
+        margin: 0.75em 0;
+    }
+
+    .timebtn {
+        width: 2.5em;
+        flex-shrink: 0;
+        font-size: 1.25rem;
+        padding: 0.2em;
+    }
+
+    .timebtn:disabled {
+        opacity: 0.3;
+    }
+
+    .timelabel {
+        flex: 1;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+    }
+</style>

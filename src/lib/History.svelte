@@ -18,6 +18,11 @@
     );
 
     const formatOpts: DateTimeFormatOptions = { weekday: 'short', month: 'short', year: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+
+    async function removeEntry(id: number) {
+        if (!confirm(t('remove-entry-confirm'))) return;
+        await db.entries.delete(id);
+    }
 </script>
 
 <style>
@@ -30,6 +35,11 @@
         padding: 0;
         margin: 0;
         border-top: 1px solid var(--color-border);
+    }
+
+    .entry-content {
+        flex: 1;
+        min-width: 0;
     }
 
     .entry-date {
@@ -51,6 +61,21 @@
         margin: 0.25rem 0 0;
         font-style: italic;
     }
+
+    .remove-btn {
+        flex-shrink: 0;
+        width: 1.75rem;
+        height: 1.75rem;
+        padding: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 1;
+        background: rgb(239 68 68 / 0.08);
+        color: #ef4444;
+        border: 1px solid rgb(239 68 68 / 0.3);
+        border-radius: 4px;
+        cursor: pointer;
+    }
 </style>
 
 <section class="history">
@@ -59,13 +84,14 @@
         {#if $historyEntries}
             {#each $historyEntries.toReversed() as entry}
                 <li class="item">
-                    <div>
+                    <div class="entry-content">
                         <span class="entry-date">{ DateTime.fromJSDate(entry.timestamp).toLocaleString(formatOpts) }</span>
                         <span class="entry-relative">{ DateTime.fromJSDate(entry.timestamp).toRelative() }</span>
                         {#if entry.comment}
                             <p class="entry-comment">{entry.comment}</p>
                         {/if}
                     </div>
+                    <button class="remove-btn" type="button" onclick={() => removeEntry(entry.id!)}>×</button>
                 </li>
             {/each}
         {/if}

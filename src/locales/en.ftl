@@ -18,6 +18,7 @@ no-entries = (no entries)
 
 # History.svelte
 history-heading = In order of recency:
+remove-entry-confirm = Remove this entry?
 
 # CreateEntry.svelte
 add-entry = Add entry

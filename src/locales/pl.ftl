@@ -18,6 +18,7 @@ no-entries = (brak wpisów)
 
 # History.svelte
 history-heading = Od najnowszych:
+remove-entry-confirm = Usunąć ten wpis?
 
 # CreateEntry.svelte
 add-entry = Dodaj wpis

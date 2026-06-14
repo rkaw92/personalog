@@ -1,38 +1,34 @@
-# sv
+# persona/log
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A minimal personal event tracker for your phone. Log recurring events — workouts, medications, meals, habits — and see at a glance when you last did them.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Categories** — create a category for anything you want to track
+- **One-tap logging** — record an event in seconds, with an optional comment
+- **Time offset** — log something that happened up to 24 hours ago
+- **History** — browse all entries for a category in reverse chronological order
+- **Archiving** — hide categories you no longer need without losing their history
+
+## Privacy
+
+persona/log stores all data locally on your device using IndexedDB. No account is required. No data is transmitted to any server, processed, or shared with anyone. Uninstalling the app removes all data.
+
+## Tech stack
+
+- [SvelteKit](https://kit.svelte.dev/) + [Svelte 5](https://svelte.dev/)
+- [Dexie](https://dexie.org/) (IndexedDB)
+- [Luxon](https://moment.github.io/luxon/) (date formatting)
+- [Fluent](https://projectfluent.org/) (i18n — English and Polish)
+- Deployed on [Cloudflare Pages](https://pages.cloudflare.com/)
+
+## Development
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## License
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+AGPLv3 — see [LICENSE](LICENSE).

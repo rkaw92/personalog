@@ -284,9 +284,9 @@ input:focus {
 
 dialog {
     position: fixed;
-    top: 50%;
+    top: 1.5rem;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     margin: 0;
     padding: 1.5rem;
     border: none;
@@ -295,6 +295,8 @@ dialog {
     color: var(--color-primary);
     box-shadow: var(--shadow-dialog);
     width: min(calc(100vw - 2rem), 420px);
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
     box-sizing: border-box;
 }
 
